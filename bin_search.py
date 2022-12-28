@@ -31,5 +31,4 @@ def dichotomy (fun, a,b, eps):
             else:
                 x = mid
         if(root != None):
-            res.append(root)
-    return res
+            return root
