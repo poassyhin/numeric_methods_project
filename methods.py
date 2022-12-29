@@ -74,21 +74,6 @@ def secant_method(f,a,b,e):
 
     return [c]
 
-
-def simple_itter_method(fun, a, b, e=1e-6):
-    x1 = (a + b) / 2
-
-    x0 = x1
-    x1 = fun(x0)
-    while((x1>b) | (x1<a)):
-        if ((x1 > b) | (x1 < a)):
-            x1 = (x1 + (a + b) / 2) / 2
-        while abs(x1 - x0) <= e:
-            x0 = x1
-            x1 = fun(x0)
-    return x1
-
-
 def tangent_method(f, a, b, EPS=1e-6, METHOD_TIMEOUT=5):
     start_time = time.time()
     seeking_range = b - a
