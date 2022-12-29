@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from methods import dichotomy, newton_method, tangent_method, secant_method
+from methods import dichotomy, newton_method, tangent_method, secant_method, simple_itter_method
 
 EPS = 1e-6
 
@@ -53,6 +53,13 @@ def solve(f, a, b, e):
             )
         }
     )
+    sol.update(
+        {
+            "tangent_method": filter_roots(
+                find_roots_in_range(simple_itter_method, f, a, b, e), f, e
+            )
+        }
+    )
     sor_sol = {len(sol[i]): i for i in sol.keys()}
     r_key = sorted(sor_sol, reverse=True)[0]
     return sor_sol[r_key], sol[sor_sol[r_key]]
@@ -66,6 +73,7 @@ def main():
     print(filter_roots(find_roots_in_range(dichotomy, f, -10, 10, EPS), f, EPS))
     print(filter_roots(find_roots_in_range(newton_method, f, -10, 10, EPS), f, EPS))
     print(filter_roots(find_roots_in_range(tangent_method, f, -10, 10, EPS), f, EPS))
+    print(filter_roots(find_roots_in_range(simple_itter_method, f, -10, 10, EPS), f, EPS))
     print(secant_method(f, -10, 10, EPS))
     print(find_roots_in_range(dichotomy, f, -10, 10, EPS))
     met, ans = solve(f, -10, 11, EPS)
